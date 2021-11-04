@@ -1,0 +1,12 @@
+<h1>List of the Movies</h1>
+
+<tbody>
+  <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.name %></td>
+      <td><%= link_to 'Show', list %></td>
+    </tr>
+  <% end %>
+</tbody>
+
+<%= link_to 'New List', new_list_path, class: 'btn btn-primay'%>
