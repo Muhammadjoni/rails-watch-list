@@ -1,11 +1,43 @@
-<h1>List of Movies</h1>
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-  <li>
-    <h3><%= bookmark.comment %></h3>
-  </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-md-9">
 
-<%= link_to 'Add a bookmark', new_list_bookmark_path(@list) %>
-<%= link_to 'Back', lists_path %>
+    <h1 class="d-flex justify-content-center">List of the Movies</h1>
+
+      <table>
+        <thead>
+          <tr class="justify-space-between">
+            <th>Title</th>
+            <th>Overview</th>
+            <th>Poster_url</th>
+            <th>Rating</th>
+            <th>Comment</th>
+
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @list.bookmarks.each do |bookmark| %>
+            <tr>
+              <td><%= bookmark.movie.title %></td>
+              <td><%= bookmark.movie.overview %></td>
+              <td><%= bookmark.movie.poster_url %></td>
+              <td><%= bookmark.movie.rating %></td>
+              <td><%= bookmark.comment %></td>
+
+              <td><%= link_to 'Destroy',
+                            bookmark,
+                            method: :delete,
+                            class: 'btn btn-xs btn-danger',
+                            data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="col-md-6">
+    <%= link_to 'Add a bookmark', new_list_bookmark_path(@list), class: 'btn btn-xs btn-primary mx-2 '%>
+    <%= link_to 'Back', lists_path, class: 'btn btn-xs btn-secondary'%>
+  </div>
+</div>
